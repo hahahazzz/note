@@ -3,6 +3,15 @@
 - ECMAScript:整个JavaScript的核心,包含基本语法,变量,关键字,保留字,数字类型,语句,函数等
 - DOM:Document Object Model,文档对象模型,包含整个HTML页面的内容
 - BOM:Browser Object Model,浏览器对象模型,包含整个浏览器相关的内容
+---
+## 数据类型(基本数据类型)
+- undefined/null/string/boolean/number
+- undefined表示定义了未赋值,null表示不存在
+---
+## 注意点
+- 变量使用var定义
+- 如果在函数中使用var定义了一个变量,那么这个变量是一个局部变量,如果没有var,则该变量属于全局变量   
+---
 ## JavaScript的引入
 - 直接在head标签内定义
 >
