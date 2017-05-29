@@ -116,6 +116,19 @@
     - remove():删除节点,事件也会被删除
     - detach():清除节点后,事件会被保留
     - empty():清除元素的所有后代节点.
+- CSS操作方法
+    - 通过attr属性设置/获取style属性
+        >
+            attr("style","color:red");
+    - 设置CSS样式
+        >
+            css(name,value):设置一个css样式属性
+            css(properties):传递key-value对象,设置多个css样式
+    - 设置class属性
+        >
+            addClass(class):添加一个class属性
+            removeClass(class):移除一个class属性
+            toggleClass(class):如果存在就删除一个class,不存在则添加
 ## jQuery校验表单
 - 引入jQuery,再引入jquery.validate
 - 示例代码:
