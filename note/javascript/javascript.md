@@ -43,5 +43,13 @@
     location.protocol 返回所使用的 web 协议（http:// 或 https://）
     location.href 属性返回当前页面的 URL 
     location.pathname 属性返回 URL 的路径名
-
-
+---
+## 页面中几个常用的事件
+- onsubmit  表单提交
+- onclick 点击
+- ondbclick 双击
+- onload 某个页面或图像加载完成
+- onfocus 获得焦点
+- onblur 失去焦点
+- onmouseover 鼠标移入
+- onmouseout 鼠标移出
