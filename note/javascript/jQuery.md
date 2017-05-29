@@ -112,6 +112,10 @@
 - 追加内容
     - append:a.append(b),将b追加到a的末尾
     - appendTo:a.appendTo(b),将a追加到b的末尾
+- 删除操作
+    - remove():删除节点,事件也会被删除
+    - detach():清除节点后,事件会被保留
+    - empty():清除元素的所有后代节点.
 ## jQuery校验表单
 - 引入jQuery,再引入jquery.validate
 - 示例代码:
