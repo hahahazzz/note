@@ -14,18 +14,18 @@
 ---
 ## JavaScript的引入
 - 直接在head标签内定义
->
-    <script type="text/javascript">
-        function test() {
-            alert("test");
-        }
-    </script>
+    >
+        <script type="text/javascript">
+            function test() {
+                alert("test");
+            }
+        </script>
 - 通过标签引入
->
-    <script src="../js/user-register.js" type="text/javascript"></script>
+    >
+        <script src="../js/user-register.js" type="text/javascript"></script>
 - 行内引入,其中的javascript:可以缺省
->
-    <input type="button" id="btn_submit" name="submit" value="提交" onclick="javascript:alert(location.port)"/>
+    >
+        <input type="button" id="btn_submit" name="submit" value="提交" onclick="javascript:alert(location.port)"/>
 ---
 ## History对象
 - history对象包含浏览器的历史,可通过window.history访问
