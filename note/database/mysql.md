@@ -41,6 +41,14 @@
 >
     DROP TABLE user;/*删除表数据并删除表结构*/
     DELETE FROM user;/*删除表数据*/
+    TRUNCATE TABLE user;/*摧毁表结构,再重新建一张相同的表,auto_increment将重置为0*/
+- 删除表中所有记录,使用delete from 表名还是truncate table 表名?
+    - 删除方式:
+        - delete一条一条删除,不会清空auto_increment记录数.
+        - truncate直接将表删除(摧毁),重新建一张相同的表,auto_increment将被重置从0开始.
+    - 事务方面:
+        - delete删除的数据,如果是在一个事务中,可以找回.
+        - truncate删除的数据无法找回.
 ### 修改表
 >
     ALTER TABLE user MODIFY password VARCHAR(255);/*修改password长度*/
