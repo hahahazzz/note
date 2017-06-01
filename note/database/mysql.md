@@ -62,6 +62,35 @@
 >
     ALTER TABLE product ADD FOREIGN KEY (category_id) REFERENCES category (cid);
 ---
+## 多表查询
+### 交叉连接查询
+- 基本不会使用,得到的是两个表的乘积
+- 语法:
+    >
+        select * from A,B;
+### 内连接查询
+- 使用的关键字inner join,inner可以省略
+    - 隐式内连接
+        >
+            select * from A,B where 条件;
+    - 显式内连接
+        >
+            select * from A inner join B on条件.
+### 外连接查询
+- 使用的关键字outer join,outer可以省略
+    - 左外连接:left outer join
+        >
+            select * from A left outer join B on 条件;
+    - 右外连接:right outer join
+        >
+            select * from A right outer join B on 条件;
+### 内连接和外连接的区别
+- 左外连接:查询左表的全部数据以及两个表的交集.
+- 内连接:查询两个表的交集.
+- 有外连接:查询右表的全部数据以及两个表的交集.
+### 子查询
+- 子查询:一条select语句的结果作为另一条select语句的一部分(查询条件,查询结果,表等).
+---
 ## JDBC开发步骤
 ### 注册驱动
 - 分析步骤1
