@@ -58,3 +58,58 @@
 ### 修改表名
 >
     RENAME TABLE 表名 TO 新表名;
+### 外键
+    >
+        ALTER TABLE product ADD FOREIGN KEY (category_id) REFERENCES category (cid);
+---
+## JDBC开发步骤
+### 注册驱动
+- 分析步骤1
+    - JDBC规范定义驱动接口:java.sql.Driver,mysql驱动包提供了实现类com.mysql.jdbc.Driver
+- 分析步骤2
+    - DriverManager工具类,提供注册驱动的方法:registerDriver(),方法参数是java.sql.Driver,所以可以通过DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+    - 不足:
+        - 硬编码,后期不易于程序扩展和维护.
+        - 驱动被注册两次.
+- 分析步骤3
+    - 开发通常使用Class.forName()加载一个使用字符串描述的驱动类
+    >
+        Class.forName("com.mysql.jdbc.Driver");
+    - 如果使用Class.forName()将类加载到内存,该类的静态代码将自动执行.com.mysql.jdbc.Driver源码中,会主动进行Driver注册.
+    >
+        public class Driver extends NonRegisteringDriver implements java.sql.Driver {
+            public Driver() throws SQLException {
+            }
+
+            static {
+                try {
+                    DriverManager.registerDriver(new Driver());
+                } catch (SQLException var1) {
+                    throw new RuntimeException("Can't register driver!");
+                }
+            }
+        }
+### 获得连接
+>
+    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/数据库", "username", "password");
+### 获得语句执行者
+>
+    Statement statement = connection.createStatement();
+### 执行sql语句
+>
+    String sql = "SELECT * FROM user";
+    ResultSet resultSet = statement.executeQuery(sql);
+### 处理结果
+>
+     while (resultSet.next()) {
+        int id = resultSet.getInt(1);
+        String username = resultSet.getString(2);
+        String password = resultSet.getString(3);
+        String gender = resultSet.getString(4);
+        System.out.println(String.format("%d,%s,%s,%s", id, username, password, gender));
+    }    
+### 释放资源
+>
+    resultSet.close();
+    statement.close();
+    connection.close();
