@@ -117,8 +117,7 @@
 >
     public static void saveCategory(List<Category> category) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/web09",
-                , "username", "password");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/web09", "username", "password");
         String sql = "INSERT INTO category(cname) VALUES(?);";
         PreparedStatement statement = connection.prepareStatement(sql);
         for (Category c : category) {
