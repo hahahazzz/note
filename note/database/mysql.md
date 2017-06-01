@@ -113,3 +113,23 @@
     resultSet.close();
     statement.close();
     connection.close();
+### 批量操作
+>
+    public static void saveCategory(List<Category> category) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection(String.format("jdbc:mysql://localhost:3306/web09",
+                , "username", "password");
+        String sql = "INSERT INTO category(cname) VALUES(?);";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        for (Category c : category) {
+            statement.setString(1, c.getName());
+            statement.addBatch();
+        }
+        statement.executeBatch();
+        if (statement != null) {
+            statement.close();
+        }
+        if (connection != null) {
+            connection.close();
+        }
+    }
