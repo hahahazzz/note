@@ -59,8 +59,8 @@
 >
     RENAME TABLE 表名 TO 新表名;
 ### 外键
-    >
-        ALTER TABLE product ADD FOREIGN KEY (category_id) REFERENCES category (cid);
+>
+    ALTER TABLE product ADD FOREIGN KEY (category_id) REFERENCES category (cid);
 ---
 ## JDBC开发步骤
 ### 注册驱动
