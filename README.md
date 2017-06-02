@@ -8,3 +8,5 @@
 ---
 ## Database
 - [mysql](./note/database/mysql.md)
+- [数据库连接池](./note/database/数据库连接池.md)
+- [DBUtils](./note/database/DBUtils.md)
