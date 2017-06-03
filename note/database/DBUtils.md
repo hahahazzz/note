@@ -19,7 +19,7 @@
 - ArrayListHandler
     - 将结果集中的每一条记录都封装到一个Object[]数组中,将这些数组再封装到List集合中.
 - BeanHandler
-    - 就昂结果集中第一条记录封装到一个指定的javaBean中
+    - 将结果集中第一条记录封装到一个指定的javaBean中
 - BeanListHandler
     - 将结果集中每一条记录封装到指定的javaBean中,再将这些javaBean封装到List集合中.
 - ColumnListHandler
