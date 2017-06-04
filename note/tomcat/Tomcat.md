@@ -22,21 +22,11 @@
 - Apache开源组织下的开源免费的中小型Web服务器,支持JavaEE中的servlet和jsp规范.
 ---
 ## Tomcat目录结构
-- bin
-    > 可执行文件
-- conf
-    > 配置文件
-
-    - server.xml
-
-        - tomcat核心配置文件
-- lib
-    > jar包,类库
-- logs
-    > 日志
-- temp
-    > 临时文件
-- webapps
-    > 应用目录
-- work
-    > 工作目录
+- bin : 可执行文件
+- conf : 配置文件
+    - server.xml : tomcat核心配置文件
+- lib : jar包,类库
+- logs : 日志
+- temp : 临时文件
+- webapps : 应用目录
+- work : 工作目录
