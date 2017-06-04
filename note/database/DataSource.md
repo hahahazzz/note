@@ -1,6 +1,5 @@
 # 数据库连接池
-## 概念
-- 用池来管理Connection,这样就可以复用Connection.有了池,我们就不用自己去创建Connection,而是通过池来获取Connection对象,当使用完Connection后,调用Connection的close()方法也不会真的关闭Connection,而是把Connection归还给池,池就可以再利用这个Connection对象.
+> 用池来管理Connection,这样就可以复用Connection.有了池,我们就不用自己去创建Connection,而是通过池来获取Connection对象,当使用完Connection后,调用Connection的close()方法也不会真的关闭Connection,而是把Connection归还给池,池就可以再利用这个Connection对象.
 ---
 ## C3P0连接池
 - c3p0-config.xml,位置为src目录下,IDEA启用maven支持则在resources文件夹下.
