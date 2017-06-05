@@ -25,8 +25,17 @@
 - bin : 可执行文件
 - conf : 配置文件
     - server.xml : tomcat核心配置文件
+    - tomcat-users.xml : 用户权限配置文件
+    - web.xml : 所有web项目默认配置文件
 - lib : jar包,类库
 - logs : 日志
 - temp : 临时文件
-- webapps : 应用目录
-- work : 工作目录
+- webapps : 默认情况下发布web项目所存放的目录
+- work : tomcat处理jsp的工作目录
+### Web应用的目录结构
+    |- 项目名称(webapps文件夹)
+        |- 静态资源,HTML,CSS,JS
+        |- WEB-INF,不能通过浏览器直接访问
+            |- web.xml 当前web项目的核心配置,servlet2.5必须有,3.0可以省略
+            |- lib 当前web项目所需的第三方jar存放位置
+            |- classes java源码编译后生成class的存放位置
