@@ -41,3 +41,30 @@
     - 获得字节流,通过字节流的write(byte[])可以向response缓冲区写入字节,再由tomcat服务器将字节内容组成http响应返回给浏览器
 ## 文件下载
 - 文件下载的实质就是文件拷贝,将文件从服务器端拷贝到浏览器端,所以文件下载需要IO技术将服务器端的文件使用InputStream读取到,再使用ServletOutputStream写到response缓冲区中.
+- 获取文件的MIME类型
+    >
+        String mimeType = getServletContext().getMimeType(String file);
+- 代码示例
+    >
+        String fileName = request.getParameter("filename");
+        // 此处省略fileName的验证
+        ServletContext servletContext = getServletContext();
+        // 获取指定文件的路径
+        String filePath = servletContext.getRealPath("WEB-INF/img/" + fileName);
+        // 要下载文件的类型
+        response.setContentType(servletContext.getMimeType(fileName));
+        // 告诉客户端该文件不是直接解析,而是以附件形式打开(下载)
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+        FileInputStream inputStream = new FileInputStream(filePath);
+        int len = 0;
+        byte[] buf = new byte[1024];
+        ServletOutputStream outputStream = response.getOutputStream();
+        while (((len = inputStream.read(buf))) > 0) {
+            outputStream.write(buf, 0, len);
+        }
+        inputStream.close();    
+---
+## Response细节点
+- response获得的流可以不手动关闭,Tomcat容器会帮我们关闭.
+- getWrite和getOutputStream()不能同时调用
