@@ -18,3 +18,5 @@
 - [Tomcat](./note/tomcat/Tomcat.md)
 ## Servlet
 - [Servlet](./note/servlet/Servlet.md)
+- [Request](./note/servlet/Request.md)
+- [Response](./note/servlet/Response.md)
