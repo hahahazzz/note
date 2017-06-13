@@ -15,3 +15,49 @@
     - 显式开启一条事务 : start transaction
     - 事务提交 : commit代表从开启事务到事务提交,中间的所有sql都认为有效真正的更新数据库.
     - 事务的回滚 : rollback代表事务的回滚,从开启事务到事务回滚,中间所有的sql操作都认为无效,数据库没有被更新.
+---
+## JDBC的事务
+- 开启事务
+    - connection.setAutoCommit(false);
+- 提交事务
+    - connection.commit();
+- 回滚事务
+    - connection.rollback();
+
+### DBUtils事务操作
+- QueryRunner
+    - 有参构造
+        - 有参构造将数据源(连接池)作为参数传入QueryRunner,QueryRunner会从连接池中获得一个数据库连接资源操作数据库,所以直接使用无Connection参数的方法即可操作数据库.
+    - 无参构造
+        -无参的构造函数没有将数据源(连接池)作为参数传入QueryRunner,那么我们在使用QueryRunner对象操作数据库时要使用有Connection参数的方法.
+---
+## 并发访问问题
+> 由隔离性引起
+- 如果不考虑隔离性,事务存在三种并发问题.
+1. 脏读
+    - B事务读取到了A事务尚未提交的数据.
+2. 不可重复读
+    - 一个事务中,两次读取的数据内容不一致.
+3. 幻读/虚读
+    - 一个事务中,两次读取的数据的数量不一致.
+---
+
+## 事务的隔离级别
+1. read uncommitted
+    - 读取尚未提交的数据.
+2. read committed
+    - 读取已经提交的数据.可以解决脏读.
+3. repeatable read
+    - 重读读取,可以解决脏读和不可重复读.
+4. serializable
+    - 串行化,可以解决脏读,不可重复度和虚读.
+### mysql数据库默认的隔离级别
+- 查询当前隔离级别
+    >
+        SELECT @@tx_isolation;
+- 设置隔离级别
+    >
+        SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED ;
+        SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED ;
+        SET SESSION  TRANSACTION ISOLATION LEVEL REPEATABLE READ ;
+        SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE ;
