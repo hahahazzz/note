@@ -32,3 +32,6 @@
 - [JSP](./note/jsp/JSP.md)
 - [EL](./note/jsp/EL.md)
 - [JSTL](./note/jsp/JSTL.md)
+
+## Ajax
+- [Ajax](./note/ajax/Ajax.md)

@@ -53,3 +53,4 @@
 - onblur 失去焦点
 - onmouseover 鼠标移入
 - onmouseout 鼠标移出
+- onkeyup 键盘按键弹起
