@@ -34,6 +34,8 @@
 # Session
 > 将数据存储到服务器端,安全性相对好,增加服务器的压力.
 
+> JSP在翻译时,会默认创建Session对象, page标签session可以设置.
+
 > Session是一个域对象,所以也有如下3各方法
     >
         session.setAttribute(String key,Object value);

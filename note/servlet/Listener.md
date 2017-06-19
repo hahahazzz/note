@@ -35,3 +35,53 @@
     - 实现监听器接口
     - 重写监听器方法
     - 配置web.xml
+- 作用
+    - 初始化工作,例如初始化对象,初始化数据,加载数据库驱动,连接池的初始化等
+    - 加载一些初始化的配置,例如spring的配置文件
+    - 任务调度,例如定时器,Timer/TimerTask
+
+## 与Session中绑定的对象相关的监听器(对象感知监听器)
+
+- 即将要被绑定到session中的对象有几种状态
+    1. 绑定状态:一个对象被放到session域中
+    2. 解绑状态:一个对象被从session中移除
+    3. 钝化状态:将session内存中的对象持久化到磁盘
+    4. 活化状态:将磁盘上的对象再次恢复到session中
+
+### 绑定与解绑监听器HttpSessionBindingListener
+>
+    public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) {
+
+    }
+
+    public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) {
+
+    }
+
+    - 用于对象,比如Person类
+
+### 钝化与活化监听器HttpSessionActivationListener
+- 可以通过配置文件指定对象钝化时间
+    - 对象多长时间不用被钝化
+    - 在META-INF下创建context.xml
+    >
+        <Context>
+        <!-- maxIdleSwap:session中的对象多长时间不使用就钝化 -->
+        <!-- directory:钝化后的对象的文件写到磁盘的哪个目录下  配置钝化的对象文件在work/catalina/localhost/钝化文件 -->
+            <Manager className="org.apache.catalina.session.PersistentManager" maxIdleSwap="1"><!--1分钟不用被钝化-->
+                <Store className="org.apache.catalina.session.FileStore" directory="dir" />
+            </Manager>
+        </Context>
+
+## 邮件服务器
+
+### 邮件服务器的基本概念
+
+- 邮件客户端
+    - 可以值安装在电脑上的,也可以是网页形式的.
+- 邮件服务器
+    - 起到邮件的接受与推送作用
+- 邮件发送协议
+    - 协议:数据传输的约束
+    - 邮件接收协议:POP3,IMAP
+    - 邮件发送协议:SMTP
