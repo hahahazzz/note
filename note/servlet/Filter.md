@@ -17,7 +17,7 @@
 - 与ServletContext一样,服务器启动时创建,服务器关闭时销毁.
 
 ## Filter的API
-- Filter接口有三个方法,并且这三个方法都与Filter的生命周期相关.
+> Filter接口有三个方法,并且这三个方法都与Filter的生命周期相关.
 ### init(FilterConfig)
 - Filter的初始化方法,Filter对象创建时执行
 
