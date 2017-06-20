@@ -12,6 +12,22 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 - Filter的执行顺序由定义在web.xml中的filter-mapping顺序决定
+- Filter的url-pattern有三种匹配方式
+    1. 具体资源路径匹配
+        > 
+            <url-pattern>/servlet</url-pattern>
+            <!--或者指定过滤的Servlet名称-->
+            <servlet-name>/ser1</servlet-name>
+            <servlet-name>/ser2</servlet-name>
+            <servlet-name>/ser3</servlet-name>
+
+    2. 目录匹配
+        > 
+            <url-pattern>/s/*</url-pattern>
+
+    3. 扩展名匹配
+        > 
+            <url-pattern>*.a</url-pattern>
 
 ## 生命周期
 - 与ServletContext一样,服务器启动时创建,服务器关闭时销毁.
@@ -26,3 +42,13 @@
 
 ### destroy()
 - Filter销毁时执行
+
+## dispatcher:访问的方式
+1. REQUEST
+    - 默认值,代表直接访问某个资源时执行filter
+2. FORWARD
+    - 转发时才执行filter
+3. INCLUDE
+    - 包含资源时执行filter
+4. ERROR
+    - 发生错误时,进行跳转还是执行filter
