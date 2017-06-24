@@ -124,3 +124,96 @@
 
 - 杀死进程
     - kill -9 pid
+
+---
+## 网络配置
+1. vim命令配置
+    - 查看网卡配置 cat /etc/sysconfig/network-scripts/配置文件名
+
+|||
+|:---:|:---:|
+| DEVICE=ens33 | 网卡名称 |
+| TYPE=Ethernet | 网卡诶型 |
+| ONBOOT=yes | 开启启动网卡 |
+| BOOTPROTO=static | IP静态获取,取值可为dhcp,则下列三项不需要 |
+| IPADDR=xxx | IP地址 |
+| GATEWAY=xxx | 网关 |
+| NETMASK=xxx | 子网掩码 |
+
+## SSh Secure乱码问题
+- 修改/etc/sysconfig/i18n
+    - CentOS 7 修改 /etc/locale.conf文件
+
+    - 方案1
+    >
+        LANG="zh_CN.GBK"
+
+    - [方案2](http://www.cnblogs.com/52linux/archive/2012/03/24/2415082.html)
+    >
+        LANG="zh_CN.GB18030"  
+        LANGUAGE="zh_CN.GB18030:zh_CN.GB2312:zh_CN"  
+        SUPPORTED="zh_CN.GB18030:zh_CN:zh:en_US.UTF-8:en_US:en"  
+        SYSFONT="lat0-sun16"
+---
+
+## JDK/Mysql/Tomcat安装
+
+### jdk
+1. 配置JDK环境变量
+    >
+        export JAVA_HOME=/usr/local/jdk
+        export PATH=$PATH:$JAVA_HOME/bin
+2. 使环境变量生效
+    >
+        source /etc/profile
+
+### mysql
+1. 查看已安装的mysql
+    - rpm -qa | grep mysql
+2. 卸载已安装的mysql
+    - rpm -e --nodeps mysql实例
+3. 安装mysql
+    1. wget rpm文件下载地址
+    2. rpm -ivh mysql下载的文件文件名
+    3. yum install mysql-community-server
+    - 安装完成之后重启mysql服务
+        - service mysqld restart
+4. 启动mysql
+    - service mysql start
+5. 将mysql加入系统服务中并设置开机启动
+    - 加入系统服务 chkconfig --add mysql
+    - 开机启动 chkconfig mysql on
+6. mysql默认的密码查看
+    - /var/log/mysqld.log文件
+7. 修改mysql登录密码
+    - set password for 'root'@'localhost'=password('NEWpassword@1'); 
+8. 开启mysql远程登录
+    - 安全起见,默认情况下,mysql不支持远程登录,所需需要开启mysql的远程登录权限.
+    - 登录mysql后执行
+    >
+        grant all privileges on *.* to 'root'@'%' identified by 'ACCESSpassword@1';
+        flush privileges;
+9. <span id='port'>开启3306端口</span>
+    >
+        /sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+        /etc/rc.d/init.d/iptables save ---将修改永久保存到防火墙中
+    
+    - [CentOS 7](http://www.jianshu.com/p/225a853350d9)
+    >
+        1.systemctl start firewalld 开启防火墙
+
+        2.firewall-cmd --zone=public --add-port=3306/tcp --permanent
+
+            命令含义：
+
+            --zone #作用域
+
+            --add-port=80/tcp #添加端口，格式为：端口/通讯协议
+
+            --permanent #永久生效，没有此参数重启后失效
+
+        3.firewall-cmd --reload
+
+### tomcat
+1. 开放tomcat 8080端口
+    - 参考[mysql第9条](#port).
