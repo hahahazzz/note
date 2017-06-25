@@ -123,6 +123,7 @@
         1. 直接注释,局域网内所有计算机都能访问
         2. bind localhost,只能本机访问
         3. bind 局域网指定IP,只有指定IP才能访问
-        4. redis默认以protect模式启动,在启动时添加启动参数
 
-                ./bin/redis-server ./redis.conf --protected-mode no
+        > redis默认以protect模式启动,执行1或3之后,在启动时添加启动参数
+
+            ./bin/redis-server ./redis.conf --protected-mode no
