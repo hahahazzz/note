@@ -3,7 +3,7 @@
 ## HTML部分
 - [CSS](./css/css.md)
 - [javaScript](./javascript/javascript.md)
-    - [jQuery](./javascript/jQuery.md)
+- [jQuery](./javascript/jQuery.md)
 - [BootStrap](./BootStrap/BootStrap.md)
 
 ## Database
