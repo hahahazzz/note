@@ -45,4 +45,5 @@
 - [Linux](./linux/Linux.md)
 
 ## NoSQL
-- [Redis](./NoSQL/NoSQL.md)
+- [NoSQL](./NoSQL/NoSQL.md)
+- [Redis](./NoSQL/Redis.md)
