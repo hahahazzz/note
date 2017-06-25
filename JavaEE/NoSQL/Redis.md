@@ -28,7 +28,7 @@
 
 - 2.编译Redis
     - 进入redis解压目录,执行make
-    - 如果报如下错误,执行 make MALLOC=libc
+    - 如果报如下错误,可以尝试执行 make MALLOC=libc
 
             cd src && make all
             make[1]: Entering directory `/usr/local/redis-3.2.9/src'
@@ -41,6 +41,7 @@
             make[1]: *** [adlist.o] Error 1
             make[1]: Leaving directory `/usr/local/redis-3.2.9/src'
             make: *** [all] Error 2
+
 - 3.编译成功之后,执行如下命令安装redis到/usr/local/redis目录
 
         make PREFIX=/usr/local/redis install
@@ -50,4 +51,4 @@
         cp redis.conf /usr/local/redis
 
 - 5.开放6379端口
-    - 参考[Linux#mysql第9条](../linux/Linux.md#port)
+    - 参考[Linux#Port](../linux/Port.md)

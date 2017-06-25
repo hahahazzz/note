@@ -193,27 +193,9 @@
     >
         grant all privileges on *.* to 'root'@'%' identified by 'ACCESSpassword@1';
         flush privileges;
-9. <span id='port'>开启3306端口</span>
-    >
-        /sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
-        /etc/rc.d/init.d/iptables save ---将修改永久保存到防火墙中
-    
-    - [CentOS 7](http://www.jianshu.com/p/225a853350d9)
-    >
-        1.systemctl start firewalld 开启防火墙
-
-        2.firewall-cmd --zone=public --add-port=3306/tcp --permanent
-
-            命令含义：
-
-            --zone #作用域
-
-            --add-port=80/tcp #添加端口，格式为：端口/通讯协议
-
-            --permanent #永久生效，没有此参数重启后失效
-
-        3.firewall-cmd --reload
+9. 开启3306端口
+    - 参考[Port](./Port.md)
 
 ### tomcat
 1. 开放tomcat 8080端口
-    - 参考[mysql第9条](#port).
+    - 参考[Port](./Port.md)
