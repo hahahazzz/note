@@ -1,48 +1,48 @@
 # JavaEE笔记
 
 ## HTML部分
-- [CSS](./JavaEE/css/css.md)
-- [javaScript](./JavaEE/javascript/javascript.md)
-    - [jQuery](./JavaEE/javascript/jQuery.md)
-- [BootStrap](./JavaEE/BootStrap/BootStrap.md)
+- [CSS](./css/css.md)
+- [javaScript](./javascript/javascript.md)
+    - [jQuery](./javascript/jQuery.md)
+- [BootStrap](./BootStrap/BootStrap.md)
 
 ## Database
-- [mysql](./JavaEE/database/mysql.md)
-- [DataSource](./JavaEE/database/DataSource.md)
-- [DBUtils](./JavaEE/database/DBUtils.md)
-- [Transaction](./JavaEE/database/Transaction.md)
+- [mysql](./database/mysql.md)
+- [DataSource](./database/DataSource.md)
+- [DBUtils](./database/DBUtils.md)
+- [Transaction](./database/Transaction.md)
 
 ## XML
-- [XML](./JavaEE/xml/XML.md)
-- [XML解析](./JavaEE/xml/XML解析.md)
+- [XML](./xml/XML.md)
+- [XML解析](./xml/XML解析.md)
 
 ## HTTP
-- [Http](./JavaEE/http/Http.md)
+- [Http](./http/Http.md)
 
 ## Tomcat
-- [Tomcat](./JavaEE/tomcat/Tomcat.md)
+- [Tomcat](./tomcat/Tomcat.md)
 
 ## Servlet
-- [Servlet](./JavaEE/servlet/Servlet.md)
-- [Request](./JavaEE/servlet/Request.md)
-- [Response](./JavaEE/servlet/Response.md)
-- [Cookie&Session](./JavaEE/servlet/Cookie&Session.md)
-- [Listener](./JavaEE/servlet/Listener.md)
-- [Filter](./JavaEE/servlet/Filter.md)
+- [Servlet](./servlet/Servlet.md)
+- [Request](./servlet/Request.md)
+- [Response](./servlet/Response.md)
+- [Cookie&Session](./servlet/Cookie&Session.md)
+- [Listener](./servlet/Listener.md)
+- [Filter](./servlet/Filter.md)
 
 ## JSP
-- [JSP](./JavaEE/jsp/JSP.md)
-- [EL](./JavaEE/jsp/EL.md)
-- [JSTL](./JavaEE/jsp/JSTL.md)
+- [JSP](./jsp/JSP.md)
+- [EL](./jsp/EL.md)
+- [JSTL](./jsp/JSTL.md)
 
 ## Ajax
-- [Ajax](./JavaEE/ajax/Ajax.md)
+- [Ajax](./ajax/Ajax.md)
 
 ## Class
-- [ClassLoader](./JavaEE/class/class.md)
+- [ClassLoader](./class/class.md)
 
 ## Linux
-- [Linux](./JavaEE/linux/Linux.md)
+- [Linux](./linux/Linux.md)
 
 ## NoSQL
-- [Redis](./JavaEE/NoSQL/NoSQL.md)
+- [Redis](./NoSQL/NoSQL.md)
