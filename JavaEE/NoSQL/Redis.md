@@ -96,6 +96,7 @@
         String username = jedis.get("username");
         System.out.println(username);
         jedis.set("addr","jiangsu");
+        jedis.close();
         System.out.println(jedis.get("addr"));
 
         输出:
@@ -127,3 +128,71 @@
         > redis默认以protect模式启动,执行1或3之后,在启动时添加启动参数
 
             ./bin/redis-server ./redis.conf --protected-mode no
+
+- Jedis连接池
+
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMinIdle(10);  // 最小闲置数
+        config.setMaxIdle(30);  // 最大闲置数
+        config.setMaxTotal(50); // 最大连接数
+        JedisPool pool = new JedisPool(config, "xxx.xxx.xxx.xxx", 6379);
+        Jedis resource = pool.getResource();
+        resource.set("key", "value");
+        resource.close();
+---
+
+### Redis数据结构
+
+- Redis是一种高级的key-value存储系统,其中value支持五种数据类型
+    1. 字符串(String)
+    2. 哈希(hash)
+    3. 字符串列表(list)
+    4. 字符串集合(set)
+    5. 有序字符串集合(sorted set)
+    ---
+    - 关于key的定义,需要注意几点:
+        1. key不要太长,最好不超过1024个字节,这不仅小号内存,还降低查找效率,
+        2. key不要太短,太短会降低key的可读性.
+        3. 在项目中,key最好有一个统一的命名规范.
+---
+
+### Redis数据操作
+- String
+
+        set key value   // 存
+        get key         // 取
+        getset key newValue // 先取值,然后设置新值
+        del key         // 删除指定key
+
+    1. 字符串是Redis中最基础的数据存储类型,它在Redis中是二进制安全的,这意味着该类型存入和获取的数据相同.
+    2. 在Redis中,字符串类型的value最多可以容纳的长度是512M.
+    ---
+    
+    - 数值增减
+
+            // 将指定key的value原子性的递增1
+            // 如果key不存在,其初始值为0,在incr之后,值为1
+            // 如果value的值不能转为整型,该操作将执行失败并返回相应的错误信息.
+            incr key
+
+            // 将指定key的value原子性的递减1
+            // 如果key不存在,其初始值为0,在decr之后,值为-1
+            // 如果value的值不能转为整型,该操作将执行失败并返回相应的错误信息.
+            decr kye
+
+        - 扩展
+
+                // 将指定key的value原子性的递增increment
+                // 如果key不存在,其初始值为0,在incrby之后,值为increment
+                // 如果value的值不能转为整型,该操作将执行失败并返回相应的错误信息.
+                incrby num increment
+
+                // 将指定key的value原子性的递增decrement
+                // 如果key不存在,其初始值为0,在decrby之后,值为decrement
+                // 如果value的值不能转为整型,该操作将执行失败并返回相应的错误信息.
+                decrby num decrement
+
+                // 拼接字符串
+                // 如果key存在,则在原有的value后追加指定的value
+                // 如果key不存在,则重新创建一个key-value
+                append key value
