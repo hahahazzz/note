@@ -91,9 +91,12 @@
 - java代码示例
 
         // 参数分别是远程IP地址和端口
-        Jedis jedis = new Jedis("xxx.xxx.xxx.xxx", 6379);
+        Jedis jedis = new Jedis("192.168.189.128", 6379);
+        // 获取已存在的username
         String username = jedis.get("username");
         System.out.println(username);
+        jedis.set("addr","jiangsu");
+        System.out.println(jedis.get("addr"));
 
         输出:
             zhangsan
