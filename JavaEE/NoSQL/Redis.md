@@ -192,7 +192,7 @@
                 // 如果value的值不能转为整型,该操作将执行失败并返回相应的错误信息.
                 decrby num decrement
 
-                // 拼接字符串
+                // 拼接字符串(该操作会打印字符串长度)
                 // 如果key存在,则在原有的value后追加指定的value
                 // 如果key不存在,则重新创建一个key-value
                 append key value
