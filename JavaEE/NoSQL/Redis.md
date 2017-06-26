@@ -159,13 +159,14 @@
 ### Redis数据操作
 - String
 
-        set key value   // 存
-        get key         // 取
-        getset key newValue // 先取值,然后设置新值
-        del key         // 删除指定key
-
+    - set key value   // 存
+    - get key         // 取
+    - getset key newValue // 先取值,然后设置新值
+    - del key         // 删除指定key
+    ---
     1. 字符串是Redis中最基础的数据存储类型,它在Redis中是二进制安全的,这意味着该类型存入和获取的数据相同.
     2. 在Redis中,字符串类型的value最多可以容纳的长度是512M.
+
     ---
     
     - 数值增减
@@ -196,3 +197,70 @@
                 // 如果key存在,则在原有的value后追加指定的value
                 // 如果key不存在,则重新创建一个key-value
                 append key value
+---
+
+- List
+
+    - Redis中,List类型是按照插入顺序排序的字符串链表.和普通数据结构中的普通链表一样,我们可以在其头部(left)和尾部(right)添加新的元素.
+
+    - 插入时,如果key不存在,Redis将为该key创建一个新的链表.
+
+    - 如果链表中所有的元素均被移除,那么该key也会被从数据库中删除.
+
+    - List中可以包含的最大元素数量是4294967295.
+
+    - 从元素插入和删除的效率视角来看,如果我们是在链表的两头插入或删除数据,这将是非常高效的操作,即使链表中已经存储了百万条记录,该操作也可以在常量时间内完成.要说明的是,如果元素插入或删除作用于链表中间,那将会是非常低效的.
+
+    1. lpush key value1 value2...
+
+        - 在指定的key所关联的list的头部插入所有的values
+        - 如果该key不存在，该命令在插入的之前创建一个与该key关联的空链表，之后再向该链表的头部插入数据。
+        - 插入成功，返回元素的个数。
+
+    2. rpush key value1、value2…
+
+        - 在该list的尾部添加元素
+
+    3. lrange key start end
+
+        - 获取链表中从start到end的元素的值，start、end可为负数，若为-1则表示链表尾部的元素，-2则表示倒数第二个，依次类推
+        - lrange key 0 -1表示查询所有元素
+
+    4. lpushx key value
+
+        - 仅当参数中指定的key存在时(如果与key管理的list中没有值时，则该key是不存在的)在指定的key所关联的list的头部插入value。
+
+    5. rpushx key value
+    
+        - 在该list的尾部添加元素
+
+    6. lpop key
+    
+        - 返回并弹出指定的key关联的链表中的第一个元素，即头部元素。
+
+    7. rpop key
+    
+        - 从尾部弹出元素。
+
+    8. rpoplpush resource destination
+    
+        - 将链表中的尾部元素弹出并添加到头部
+
+    9. llen key
+    
+        - 返回指定的key关联的链表中的元素的数量。
+
+    10. lset key index value
+        
+        - 设置链表中的index的脚标的元素值，0代表链表的头元素，-1代表链表的尾元素。
+
+    11. lrem key count value
+
+        - 删除count个值为value的元素
+        - 如果count大于0，从头向尾遍历并删除count个值为value的元素
+        - 如果count小于0，则从尾向头遍历并删除
+        - 如果count等于0，则删除链表中所有等于value的元素。
+
+    12. linsert key before|after pivot value
+        
+        - 在pivot元素前或者后插入value这个元素。
