@@ -5,7 +5,7 @@
     /sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
     /etc/rc.d/init.d/iptables save ---将修改永久保存到防火墙中
 
-### [CentOS 7](http://www.jianshu.com/p/225a853350d9)
+### [CentOS 7](https://www.centos.org/)
 
 > 参考文章[http://www.jianshu.com/p/225a853350d9](http://www.jianshu.com/p/225a853350d9)
 
