@@ -69,4 +69,10 @@
 - @Singleton注解
 
     - 继承自@Scope,用于实现单例.
+---
 
+#### 6. 其他相关文章
+
+- [Dagger 2 完全解析（二），进阶使用 Lazy、Qualifier、Scope 等](http://www.bijishequ.com/detail/392746?p=)
+
+- [解析Dagger中的Scope](http://www.jianshu.com/p/c4ed826c1473)
