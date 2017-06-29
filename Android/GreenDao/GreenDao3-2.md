@@ -92,7 +92,7 @@
 
 6. Query和LazyList
 
-    - Query类表示一个查询可以被执行多次.当你使用QueryBuilder中的一个方法获取结果时,QueryBuilder内部调用了Query类.如果你想多次运行相同的查询,你应该调用QueryBuilder的build()方法来差un关键一个query而不是直接执行.
+    - Query类表示一个查询可以被执行多次.当你使用QueryBuilder中的一个方法获取结果时,QueryBuilder内部调用了Query类.如果你想多次运行相同的查询,你应该调用QueryBuilder的build()方法来创建一个query而不是直接执行.
 
     - greenDAO支持唯一结果集(0或者1个结果)和结果集列表.如果你想要一个唯一的结果,你应调用QUery或者QUeryBuilder的unique方法,这个方法会给你一个结果,如果没有找到匹配的实体,则会返回一个null.如果实际情况不允许返回null,你可以调用uniqueOrThrow(),保证返回非null实体,否则抛出DaoException.
 
