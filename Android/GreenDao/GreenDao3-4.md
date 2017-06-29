@@ -80,9 +80,9 @@
 
 - 数据库初始化
 
-    - 确保使用DaoMaster中提供的OpenHelper子类来创建数据库实例。例如DaoMaster中也提供了简单的 DevOpenHelper。
+    - 确保使用DaoMaster中提供的OpenHelper子类来创建数据库实例。例如DaoMaster中也提供了简单的DevOpenHelper。
 
-    - 创建数据库实例时，只需调用getEncryptedWritableDb(String)而不是 。getWritableDb())。最后，像往常一样将数据库传递给DaoMaster.
+    - 创建数据库实例时，只需调用getEncryptedWritableDb(String)而不是getWritableDb()).最后，像往常一样将数据库传递给DaoMaster.
 
             DevOpenHelper helper = new DevOpenHelper(this, "notes-db-encrypted.db");
             Database db = helper.getEncryptedWritableDb("<your-secret-password>");
