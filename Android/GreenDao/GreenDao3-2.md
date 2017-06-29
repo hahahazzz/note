@@ -90,7 +90,7 @@
 
     - 自定义类型是一个例外:在构建查询时,你总是必须使用数据库中的值类型.例如,将一个枚举类型通过转换器映射为int类型,在查询的时候就应该使用int类型构建查询.
 
-6. QUery和LazyList
+6. Query和LazyList
 
     - Query类表示一个查询可以被执行多次.当你使用QueryBuilder中的一个方法获取结果时,QueryBuilder内部调用了Query类.如果你想多次运行相同的查询,你应该调用QueryBuilder的build()方法来差un关键一个query而不是直接执行.
 
