@@ -12,6 +12,10 @@
 - [DBUtils](./database/DBUtils.md)
 - [Transaction](./database/Transaction.md)
 
+    ### NoSQL
+    - [NoSQL](./database/NoSQL/NoSQL.md)
+    - [Redis](./database/NoSQL/Redis.md)
+
 ## XML
 - [XML](./xml/XML.md)
 - [XML解析](./xml/XML解析.md)
@@ -43,7 +47,3 @@
 
 ## Linux
 - [Linux](./linux/Linux.md)
-
-## NoSQL
-- [NoSQL](./NoSQL/NoSQL.md)
-- [Redis](./NoSQL/Redis.md)
