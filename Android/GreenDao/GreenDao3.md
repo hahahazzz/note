@@ -205,4 +205,53 @@
 
     - 标注实体ID,在数据库中表现为主键.
 
-    -  @Id(autoincrement = true),主键自增长
+    - @Id(autoincrement = true),主键自增长
+    ---
+
+    ##### 主键限制
+
+    - 实体必须有long或者Long属性作为主键,这也是Android和SQLite推荐的做法.
+
+    - 要解决这个问题,可以将属性定义为附加属性,并为其创建唯一的索引.
+
+            @Id
+            private Long id;
+            
+            @Index(unique = true)
+            private String key;
+
+- @Property
+
+    - 定义实体属性映射到数据库中的列名.
+
+    - 缺省情况下,greenDao将以SQL-ish方式建立字段名称.字段名全部大写,以下划线分隔.
+
+    - 只能使用内联常量指定列名
+
+- @NotNull
+
+    - 将属性映射到数据库中的列设为NOT NULL
+
+    - 标记原始类型(long,int,short,byte)是有意义的.
+
+    - 标记包装类(Long,Integer,Short,Byte)可空值.
+
+- @Transient
+
+    - 标记不需要持久化的属性字段.
+
+    - 也可以使用Java中的transient关键字。
+
+- @Index
+
+    - 标注属性,以此为数据库中的列创建索引.
+
+        - name : 可以指定索引名,替代默认生成的索引名.
+
+        - unique : 为索引添加唯一性约束,强制所有的值都是唯一的.
+
+- @Unique
+
+    - 向数据库中对应的字段添加唯一性约束
+
+    > SQLite会隐式的为其创建索引.
