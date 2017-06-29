@@ -66,7 +66,7 @@
 
 #### 3. 自定义类型的查询
 
-- QueryBuild不识别自定义类型,必须对查询使用原语类型,还要注意，数据库内完成的操作总是引用原始类型，例如在ORDER BY子句中。
+- QueryBuilder不识别自定义类型,必须对查询使用原语类型,还要注意，数据库内完成的操作总是引用原始类型，例如在ORDER BY子句中。
 
         RoleConverter converter = new RoleConverter();
         List<User> authors = userDao.queryBuilder()
