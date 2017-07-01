@@ -71,8 +71,132 @@
     - 继承自@Scope,用于实现单例.
 ---
 
-#### 6. 其他相关文章
+#### 6. Dagger2在MVP中的一个问题
+
+- MVP中Model-View-Presenter全部使用接口实现
+
+- 示例:
+
+    - MainActivity : MainContract.View
+
+    - MainPresenter : MainContract.Presenter
+
+    - MainModel : MainContract.Model
+
+    ##### 问题被描述:
+
+    - 现MainActivity有@Inject MainContract.Presenter presenter,具体注入对象实例为实现类MainPresenter.且MainPresenter的相关构造函数已用@Inject标注.但由于Dagger不知道MainContract.Presenter的实现类为MainPresenter,所以导致无法注入.
+
+    ##### 解决方案及步骤
+
+    - 新建抽象Module类,名称自定,如PresenterModule,添加@Module注释
+    
+    - 添加抽象方法,返回值为所需的接口类型,无需实现方法,参数为所需接口类型的实现类
+
+    - 将添加的抽象方法使用@Binds注释.
+
+    - 在对应的注入Module对象中添加该抽象Module的依赖.
+
+    ##### 代码
+
+    - MainContract仿照[googlesamples/android-architecture](https://github.com/googlesamples/android-architecture)
+    >
+
+        public interface MainContract {
+            interface Model {
+                
+            }
+
+            interface View {
+                void sayOk();
+            }
+
+            interface Presenter {
+                void sayHello();
+            }
+        }
+        ========================
+
+        // View实现类MainActivity
+        public class MainActivity extends AppCompatActivity implements MainContract.View {
+            // 需要注入的Presenter对象,类型为接口类.
+            @Inject
+            MainContract.Presenter presenter;
+
+            @Override
+            protected void onCreate(@Nullable Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_main);
+                DaggerMainComponent.builder().mainModule(new MainModule(this)).build().inject(this);
+            }
+            
+            // MainContract.View中定义的方法
+            @Override
+            public void sayOk() {
+                System.out.println("ok");
+            }
+        }
+
+        ========================
+
+        // Presenter的实现类,一般都需要持有View的引用.
+        public class MainPresenter implements MainContract.Presenter {
+            private MainContract.View view;
+
+            // 构造使用@Inject标注
+            @Inject
+            public MainPresenter(MainContract.View view) {
+                this.view = view;
+            }
+
+            // MainContract.Presenter定义的方法
+            @Override
+            public void sayHello() {
+                System.out.println("hello");
+            }
+        }
+
+        ========================
+
+        // MainComponent,连接注入对象与Module的桥梁.依赖MainModule,PresenterModule
+        @Component(modules = {MainModule.class, PresenterModule.class})
+        public interface MainComponent {
+            void inject(MainActivity mainActivity);
+        }
+
+        ========================
+
+        // 抽象PresenterModule,这里给出该Module的主要作用是关联接口与各自的实现类
+        @Module
+        public abstract class PresenterModule {
+            // 告诉Dagger,MainContract.Presenter实现类为MainPresenter
+            @Binds
+            public abstract MainContract.Presenter bindMainPresenter(MainPresenter presenter);
+        }
+
+        ========================
+
+        @Module
+        public class MainModule {
+            private MainActivity activity;
+
+            public MainModule(MainActivity activity) {
+                this.activity = activity;
+            }
+            // MainPresenter的构造方法会从这个方法获取需要的参数
+            @Provides
+            public MainContract.View provideView() {
+                return activity;
+            }
+        }
+        
+        ========================
+---
+
+#### 7. 其他相关文章
 
 - [Dagger 2 完全解析（二），进阶使用 Lazy、Qualifier、Scope 等](http://www.bijishequ.com/detail/392746?p=)
 
 - [解析Dagger中的Scope](http://www.jianshu.com/p/c4ed826c1473)
+
+- [Inject interfaces without provide methods on Dagger 2](https://android.jlelse.eu/inject-interfaces-without-providing-in-dagger-2-618cce9b1e29)
