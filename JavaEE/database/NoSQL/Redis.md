@@ -264,3 +264,158 @@
     12. linsert key before|after pivot value
         
         - 在pivot元素前或者后插入value这个元素。
+---
+
+- Set
+
+    - 在Redis中,我们可以将Set类型看作没有排序的字符集合,和List类型一样,我们也可以在该类型的数据值上执行添加删除或判断某一元素是否存在等操作,这些操作的时间都是常量时间.
+
+    - Set可包含的最大元素是4294967295.
+
+    - Set集合中不允许出现重复的元素.
+
+    - 和List类型相比,Set类型在功能上还存在着一个非常重要的特性,即在服务器端完成多个Set之间的聚合计算操作.如unions,intersections和differences,由于这些操作均在服务端完成,因此效率极高.也节省了大量网络IO开销.
+
+    ---
+
+    1. sadd key value1、value2…
+    
+        - 向set中添加数据，如果该key的值已有则不会重复添加
+
+    2. smembers key
+    
+        - 获取set中所有的成员
+
+    3. scard key
+    
+        - 获取set中成员的数量
+
+    4. sismember key member
+    
+        - 判断参数中指定的成员是否在该set中，1表示存在，0表示不存在或者该key本身就不存在
+
+    5. srem key member1、member2…
+    
+        - 删除set中指定的成员
+    
+    6. srandmember key
+    
+        - 随机返回set中的一个成员
+
+    7. sdiff sdiff key1 key2
+    
+        - 返回key1与key2中相差的成员，而且与key的顺序有关。即返回差集。
+
+    8. sdiffstore destination key1 key2
+    
+        - 将key1、key2相差的成员存储在destination上
+
+    9. sinter key[key1,key2…]
+    
+        - 返回交集
+
+    10. sinterstore destination key1 key2
+    
+        - 将返回的交集存储在destination上
+
+    11. sunion key1、key2
+    
+        - 返回并集。
+
+    12. sunionstore destination key1 key2
+    
+        - 将返回的并集存储在destination上
+---
+
+- sortedset
+
+    - Sorted-Sets和Sets类型极为相似，它们都是字符串的集合，都不允许重复的成员出现在一个Set中。它们之间的主要差别是Sorted-Sets中的每一个成员都会有一个分	数(score)与之关联，Redis正是通过分数来为集合中的成员进行从小到大的排序。
+
+    - 尽管Sorted-Sets中的成员必须是唯一的，但是分数(score)却是可以重复的。
+
+    - 在Sorted-Set中添加、删除或更新一个成员都是非常快速的操作，其时间复杂度为	集合中成员数量的对数.
+
+    - 由于Sorted-Sets中的成员在集合中的位置是有序的，因此,即便是访问位于集合中部的成员也仍然是非常高效的。事实上，Redis所具有的这一特征在很多其它类型的数据库中是很难实现的，换句话说，在该点上要想达到和Redis同样的高效，在其它数据库中进行建模是非常困难的.
+
+    ---
+
+    1. zadd key score member score2 member2 … 
+    
+        - 将所有成员以及该成员的分数存放到sorted-set中
+
+    2. zcard key
+    
+        - 获取集合中的成员数量
+
+    3. zcount key min max
+    
+        - 获取分数在[min,max]之间的成员
+
+    4. zincrby key increment member
+    
+        - 设置指定成员的增加的分数。
+
+    5. zrange key start end [withscores]
+    
+        - 获取集合中脚标为start-end的成员，[withscores]参数表明返回的成员包含其分数。
+
+    6. zrangebyscore key min max [withscores] [limit offset count]
+    
+        - 返回分数在[min,max]的成员并按照分数从低到高排序。
+        
+        - [withscores]：显示分数；
+        
+        - [limit offset count]：offset，表明从脚标为offset的元素开始并返回count个成员。
+
+    7. zrank key member
+    
+        - 返回成员在集合中的位置。
+
+    8. zrem key member[member…]
+    
+        - 移除集合中指定的成员，可以指定多个成员。
+
+    9. zscore key member
+    
+        - 返回指定成员的分数
+---
+
+- hash
+
+    - Redis中的Hashes类型可以看成具有String Key和String Value的map容器。所以该类型非常适合于存储值对象的信息.
+
+    - 如果Hash中包含很少的字段，那么该类型的数据也将仅占用很少的磁盘空间。每一个Hash可以存储4294967295个键值对.
+
+    ---
+
+    1. hset key field value
+    
+        - 为指定的key设定field/value对(键值对)
+
+    2. hgetall key
+    
+        - 获取key中的所有filed-vaule
+
+    3. hget key field
+    
+        - 返回指定的key中的field的值
+
+    4. hmset key fields
+    
+        - 设置key中的多个filed/value
+
+    5. hmget key fileds
+    
+        - 获取key中的多个filed的值
+
+    6. hexists key field
+    
+        - 判断指定的key中的filed是否存在
+
+    7. hlen key
+    
+        - 获取key所包含的field的数量
+
+    8. hincrby key field increment
+    
+        - 设置key中filed的值增加increment
