@@ -419,3 +419,42 @@
     8. hincrby key field increment
     
         - 设置key中filed的值增加increment
+---
+
+- keys的通用操作
+
+    - keys pattern
+
+        - 获取所有与pattern匹配的key,返回所有与该key匹配的keys.
+
+        - *代表一个或多个字符,?代表任意一个字符.
+
+    - del key1 key2 ...
+
+        - 删除指定的key
+
+    - exists key
+
+        - 判断该key是否存在,1代表存在,0代表不存在
+
+    - rename key newKey
+
+        - 重命名key为newKey
+
+    - expire key
+
+        - 设置过期事件,单位:秒
+
+    - ttl key
+
+        - 获取key所剩的超时时间.
+        
+        - 如果没有设置超时,返回-1,返回-2表示超时不存在.
+
+    - type key
+
+        - 获取key的类型
+
+        - 返回格式:字符串
+
+        - 字符串有string,list,set,hash,zset,如果key不存在返回none
