@@ -79,7 +79,7 @@
     - 通过浏览器以下载方式解析正文,取值:attachment;filename=xx.zip
 - Set-Cookie
     - 与会话相关的技术,服务器向浏览器写入cookie
-- COntent-Encoding
+- Content-Encoding
     - 服务器使用的压缩模式,取值:gzip
 - Content-length
     - 响应正文长度

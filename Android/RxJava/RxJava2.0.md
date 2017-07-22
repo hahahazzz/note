@@ -33,7 +33,7 @@
 
 - 如果没有事件订阅,则不会有事件发送.
 
-- ObservableEmitter<T>,事件发射器,用于发射事件,常用以下几个方法(方法定义与父接口Emitter<T>)
+- ObservableEmitter<T>,事件发射器,用于发射事件,常用以下几个方法(方法定义于父接口Emitter<T>)
     
     1. onNext
     2. onComplete
