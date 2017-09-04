@@ -112,3 +112,5 @@
 ##### 第二种方式:通配符
 
 - 在aciton的name字符串中插入```_*```,在method中可以获取到name中匹配的内容.以类似{1}的方式获取
+
+- 调用:actionName_method,如DynamicAction_add
