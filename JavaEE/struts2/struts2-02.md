@@ -57,15 +57,19 @@
 
     - class属性:Action的完整类名.
 
-    - method属性:指定调用Action中的哪个方法来处理请求.
+    - method属性:指定调用Action中的哪个方法来处理请求,默认为execute
 
 - result : 结果配置
 
-    - name属性:标识结果处理的名称,与Action方法的返回值对应.
+    - name属性:标识结果处理的名称,与Action方法的返回值对应.默认为success
 
-    - type属性:指定调用哪一个Result类处理结果.默认使用转发(在struts-default有默认配置).
+    - type属性:指定调用哪一个Result类处理结果.默认使用转发dispatcher(在struts-default有默认配置).
 
     - 标签体:填写页面的相对路径.
+
+- default-action-ref : 如果找不到package下的action,会使用此项配置的Action进行处理
+
+    - 需要在其他action之前配置
 
 ---
 
