@@ -1,148 +1,27 @@
-# Kotlin笔记
+# Programing Kotlin
 
-## 基本语法
+#### 第一章 : 开始使用Kotlin
 
-#### package
+#### 第二章 : Kotlin基础
 
-- package的声明应该位于源文件的顶部
+#### 第三章 : Kotlin面向对象
 
-- 不需要匹配任何目录或包,源文件可以放在任何文件系统上.
+#### 第四章 : Kotlin的函数
 
----
+#### 第五章 : 高阶函数和函数式编程
 
-#### 方法
+#### 第六章 : 属性
 
-- 格式
+#### 第七章 : Null安全,反射和注解
 
-    fun 方法名([参数:参数类型])[:返回值类型]{
+#### 第八章 : 泛型
 
-    }
-    
-    
-   或者
+#### 第九章 : 数据类
 
+#### 第十章 : 集合
 
-    fun 方法名([参数:参数类型])=xxx
+#### 第十一章 : Kotlin中的测试
 
-- 方法没有返回值,则返回值类型为Unit,可以省略
+#### 第十二章 : 微型服务与Kotlin
 
----
-
-#### 变量
-
-- 可变变量
-
-    var x =5 // 类型推断,x为Int
-    x += 1  // 自增1
-
-- 只读变量
-
-    val a:Int = 1   // 赋值
-    val b = 2       // 类型推断,b为Int
-    val c:Int       // 没有赋值,则需要明确指定类型
-    c=3
-
----
-
-#### 字符串模板
-
-    var a = 1
-    val s1 = "a is $a"
-
-    a = 2
-    val s2 = "${s1.replace("is", "was")}, but now is $a"
-
----
-
-#### 条件表达式
-
-    fun maxOf(a: Int, b: Int): Int {
-        if (a > b) {
-            return a
-        } else {
-            return b
-        }
-    }
-
-    // 可以写作
-
-    fun maxOf(a: Int, b: Int) = if (a > b) a else b
-
----
-
-#### 类型检查和自动类型转换
-
-- is 关键字:检查一个表达式是否是一个类型的实例
-
-- 如果一个不可变的局部变量或者属性属于特定的类型,则没有必要进行显式的类型转换
-
-        fun getStringLength(obj: Any): Int? {
-            if (obj is String) {
-                // `obj`会被自动转换为String
-                return obj.length
-            }
-
-            // `obj`属于Any类型
-            return null
-        }
-
-        // 或者
-
-        fun getStringLength(obj: Any): Int? {
-            if (obj !is String) return null
-
-            // `obj`会被自动转换为String
-            return obj.length
-        }
-
-        // 或者
-
-        fun getStringLength(obj: Any): Int? {
-            if (obj is String && obj.length > 0) {
-                return obj.length
-            }
-
-            return null
-        }
-
----
-
-#### 循环语句
-
-- for
-
-        // 直接遍历Item
-        val items = listOf("apple", "banana", "kiwi")
-        for (item in items) {
-            println(item)
-        }
-
-        // 或者
-
-        // 通过index遍历
-        val items = listOf("apple", "banana", "kiwi")
-        for (index in items.indices) {
-            println("item at $index is ${items[index]}")
-        }
-
-- while
-
-        val items = listOf("apple", "banana", "kiwi")
-        var index = 0
-        while (index < items.size) {
-            println("item at $index is ${items[index]}")
-            index++
-        }
-
----
-
-#### when表达式
-
-        fun describe(obj: Any): String =
-        when (obj) {
-            1          -> "One"
-            "Hello"    -> "Greeting"
-            is Long    -> "Long"
-            !is String -> "Not a string"
-            else       -> "Unknown"
-        }
+#### 第十三章 : 并发性
