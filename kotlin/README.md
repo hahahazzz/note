@@ -1,5 +1,7 @@
 # Programing Kotlin
 
+> Programing Kotlin笔记.章节部分内容省略
+
 #### 第一章 : 开始使用Kotlin
 
 #### 第二章 : Kotlin基础
