@@ -138,7 +138,7 @@ class PopProgressView : View {
         val popTextY = (popBottomCornerY - popBottomCornerXOffset - popTextMetrics.descent) * 0.95F
         canvas?.drawText(currentValueText, popTextX, popTextY, textPaint)
 
-        // 七宝底部倒三角
+        // 气泡底部倒三角
         val popPath = Path()
         // 倒三角左边的角点
         popPath.moveTo(currentValuePointX - popBottomCornerXOffset, popBottomCornerY - popBottomCornerXOffset)
