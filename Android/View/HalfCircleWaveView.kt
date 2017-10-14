@@ -212,7 +212,8 @@ class HalfCircleWaveView : View {
         ), -190F, arcAngle, false, arcPaint)
         foregroundWavePaint.shader = BitmapShader(foregroundWaveBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         backgroundWavePaint.shader = BitmapShader(backgroundWaveBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-        resetWaveStartXOffset(true, true)
+        foregroundWaveStartXOffset = (-perWaveWidth * 2).toInt()
+        backgroundWaveStartXOffset = (-perWaveWidth * 2 + width * backgroundWaveOffset).toInt()
         startAnim()
     }
 
@@ -230,22 +231,13 @@ class HalfCircleWaveView : View {
     }
     private val backgroundAnim: ValueAnimator by lazy {
         ValueAnimator.ofInt(backgroundWaveStartXOffset, 0).apply {
-            duration = 3400
+            duration = 6500
             interpolator = LinearInterpolator()
             repeatCount = ValueAnimator.INFINITE
             addUpdateListener {
                 backgroundWaveStartXOffset = it.animatedValue as Int
                 invalidate()
             }
-        }
-    }
-
-    private fun resetWaveStartXOffset(resetForeground: Boolean, resetBackground: Boolean) {
-        if (resetForeground) {
-            foregroundWaveStartXOffset = (-perWaveWidth * 2).toInt()
-        }
-        if (resetBackground) {
-            backgroundWaveStartXOffset = (-perWaveWidth * 2 + width * backgroundWaveOffset).toInt()
         }
     }
 
